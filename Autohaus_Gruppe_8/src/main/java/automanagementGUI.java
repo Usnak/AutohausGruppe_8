@@ -196,12 +196,12 @@ public class automanagementGUI extends JFrame {
         }
     }
 
-    private void berechneDurchschnittspreis() {
+    public double berechneDurchschnittspreis() {
         List<Auto> autos = autoManager.getAutos();
 
         if (autos.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Es gibt keine Autos, um den Durchschnittspreis zu berechnen!");
-            return;
+            return 0;
         }
 
         double summe = 0;
@@ -211,6 +211,8 @@ public class automanagementGUI extends JFrame {
 
         double durchschnittspreis = summe / autos.size();
         JOptionPane.showMessageDialog(this, "Der Durchschnittspreis aller Autos beträgt: " + String.format("%.2f", durchschnittspreis) + " EUR");
+
+        return durchschnittspreis; //Rückgabe Durchschnittspreis
     }
 
     public static void main(String[] args) {
