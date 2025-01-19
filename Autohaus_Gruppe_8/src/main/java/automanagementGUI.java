@@ -35,7 +35,7 @@ public class automanagementGUI extends JFrame {
         // GUI-Einstellungen
         setTitle("Automanagement");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800, 400);
+        setSize(800, 500);
         setContentPane(Autos);
         setVisible(true);
 
@@ -54,14 +54,19 @@ public class automanagementGUI extends JFrame {
 
     private void initObjekte() {
         // Beispiel-Daten
-        autoManager.addAuto(new Auto("Mercedes", 12980, "Benzin", 135030.50));
-        autoManager.addAuto(new Auto("BMW", 60500, "Diesel", 26100.30));
-        autoManager.addAuto(new Auto("Tesla", 34000, "Elektro", 100879.45));
-        autoManager.addAuto(new Auto("Toyota", 56560, "Diesel", 60560.30));
-        autoManager.addAuto(new Auto("Audi", 22378, "Benzin", 20400.20));
-        autoManager.addAuto(new Auto("Tesla", 4789, "Elektro", 56700.20));
-        autoManager.addAuto(new Auto("Volkswagen", 98457, "Elektro", 46007.55));
-        autoManager.addAuto(new Auto("Toyota", 110876, "Elektro", 45780.90));
+        autoManager.addAuto(new Auto("Mercedes", 4507, "Benzin", 135030.50));
+        autoManager.addAuto(new Auto("BMW", 60456, "Diesel", 26100.30));
+        autoManager.addAuto(new Auto("Tesla", 3598, "Elektro", 100879.45));
+        autoManager.addAuto(new Auto("Toyota", 56560, "Diesel", 12560.30));
+        autoManager.addAuto(new Auto("Audi", 22378, "Benzin", 30400.20));
+        autoManager.addAuto(new Auto("Tesla", 4789, "Elektro", 67700.20));
+        autoManager.addAuto(new Auto("Volkswagen", 98457, "Benzin", 8007.55));
+        autoManager.addAuto(new Auto("Toyota", 110876, "Diesel", 9700.50));
+        autoManager.addAuto(new Auto("Volkswagen", 20987, "Elektro", 21034.60));
+        autoManager.addAuto(new Auto("Tesla", 32034, "Elektro", 45098.60));
+        autoManager.addAuto(new Auto("Mercedes", 210000, "Diesel", 569.54));
+        autoManager.addAuto(new Auto("Audi", 20670, "Diesel", 45569.50));
+        autoManager.addAuto(new Auto("Mercedes", 23400, "Elektro", 100569.40));
 
 
         // Daten in die Tabelle einfügen
