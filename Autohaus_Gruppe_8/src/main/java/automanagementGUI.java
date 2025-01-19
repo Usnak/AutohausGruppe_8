@@ -35,7 +35,7 @@ public class automanagementGUI extends JFrame {
         // GUI-Einstellungen
         setTitle("Automanagement");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800, 500);
+        setSize(800, 400);
         setContentPane(Autos);
         setVisible(true);
 
@@ -54,9 +54,15 @@ public class automanagementGUI extends JFrame {
 
     private void initObjekte() {
         // Beispiel-Daten
-        autoManager.addAuto(new Auto("Mercedes", 12980, "Benzin", 45030.50));
+        autoManager.addAuto(new Auto("Mercedes", 12980, "Benzin", 135030.50));
         autoManager.addAuto(new Auto("BMW", 60500, "Diesel", 26100.30));
-        autoManager.addAuto(new Auto("Tesla", 34000, "Elektro", 45780.90));
+        autoManager.addAuto(new Auto("Tesla", 34000, "Elektro", 100879.45));
+        autoManager.addAuto(new Auto("Toyota", 56560, "Diesel", 60560.30));
+        autoManager.addAuto(new Auto("Audi", 22378, "Benzin", 20400.20));
+        autoManager.addAuto(new Auto("Tesla", 4789, "Elektro", 56700.20));
+        autoManager.addAuto(new Auto("Volkswagen", 98457, "Elektro", 46007.55));
+        autoManager.addAuto(new Auto("Toyota", 110876, "Elektro", 45780.90));
+
 
         // Daten in die Tabelle einfügen
         updateTable();
@@ -71,21 +77,21 @@ public class automanagementGUI extends JFrame {
             String preisText = textField2.getText();
 
             // Überprüfe, ob der Kilometerstand und der Preis gültig sind
-            boolean kmStandValid = isValidKmStand(kmStandText);
-            boolean preisValid = isValidPrice(preisText);
+            boolean kmStandPruefung = pruefeKmStand(kmStandText);
+            boolean preisPruefung = pruefePrice(preisText);
 
-            if (!kmStandValid && !preisValid) {
+            if (!kmStandPruefung && !preisPruefung) {
                 JOptionPane.showMessageDialog(this, "Fehler: Kilometerstand und Preis müssen gültige Zahlen sein!");
                 return;
             }
 
             // Wenn nur der Kilometerstand oder der Preis ungültig ist, zeige entsprechende Fehlermeldung
-            if (!kmStandValid) {
+            if (!kmStandPruefung) {
                 JOptionPane.showMessageDialog(this, "Fehler: Der Kilometerstand muss eine gültige ganze Zahl sein!");
                 return;
             }
 
-            if (!preisValid) {
+            if (!preisPruefung) {
                 JOptionPane.showMessageDialog(this, "Fehler: Der Preis muss eine gültige Zahl mit höchstens zwei Dezimalstellen sein!");
                 return;
             }
@@ -110,14 +116,14 @@ public class automanagementGUI extends JFrame {
         }
     }
 
-    private boolean isValidPrice(String price) {
+    private boolean pruefePrice(String price) {
         // Überprüfen, ob der Preis mit maximal 2 Dezimalstellen angegeben ist
         Pattern pattern = Pattern.compile("^\\d+(\\.\\d{1,2})?$");
         Matcher matcher = pattern.matcher(price);
         return matcher.matches();
     }
 
-    private boolean isValidKmStand(String kmStand) {
+    private boolean pruefeKmStand(String kmStand) {
         // Überprüfen, ob der Kilometerstand nur ganze Zahlen enthält
         Pattern pattern = Pattern.compile("^\\d+$");
         Matcher matcher = pattern.matcher(kmStand);
