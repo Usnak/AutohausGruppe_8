@@ -15,6 +15,7 @@ public class automanagementGUI extends JFrame {
     private JComboBox<String> comboBox3; // Filter
     private JButton speichernButton;
     private JButton deleteButton;
+    private JButton durchschnittspreisAllerAutosButton;
 
     private final AutoManager autoManager;
     private final DefaultTableModel tableModel;
@@ -34,7 +35,7 @@ public class automanagementGUI extends JFrame {
         // GUI-Einstellungen
         setTitle("Automanagement");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(1000, 500);
+        setSize(800, 500);
         setContentPane(Autos);
         setVisible(true);
 
@@ -46,6 +47,9 @@ public class automanagementGUI extends JFrame {
 
         // Filter aktualisieren, wenn die Auswahl geändert wird
         comboBox3.addActionListener(e -> filterTabelle());
+
+        // ActionListener für den "Durchschnittspreis"-Button
+        durchschnittspreisAllerAutosButton.addActionListener(e -> berechneDurchschnittspreis());
     }
 
     private void initObjekte() {
@@ -179,6 +183,23 @@ public class automanagementGUI extends JFrame {
         for (Auto auto : autoManager.getAutos()) {
             tableModel.addRow(new Object[]{auto.getMarke(), auto.getKmstand(), auto.getAntriebsart(), auto.getPreis()});
         }
+    }
+
+    private void berechneDurchschnittspreis() {
+        List<Auto> autos = autoManager.getAutos();
+
+        if (autos.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Es gibt keine Autos, um den Durchschnittspreis zu berechnen!");
+            return;
+        }
+
+        double summe = 0;
+        for (Auto auto : autos) {
+            summe += auto.getPreis();
+        }
+
+        double durchschnittspreis = summe / autos.size();
+        JOptionPane.showMessageDialog(this, "Der Durchschnittspreis aller Autos beträgt: " + String.format("%.2f", durchschnittspreis) + " EUR");
     }
 
     public static void main(String[] args) {
