@@ -40,16 +40,16 @@ public class automanagementGUI extends JFrame {
         setVisible(true);
 
         // ActionListener für den "Speichern"-Button
-        speichernButton.addActionListener(e -> speichernAuto());
+        speichernButton.addActionListener(_ -> speichernAuto());
 
         // ActionListener für den "Delete"-Button
-        deleteButton.addActionListener(e -> löschenAuto());
+        deleteButton.addActionListener(_ -> loeschenAuto());
 
         // Filter aktualisieren, wenn die Auswahl geändert wird
-        comboBox3.addActionListener(e -> filterTabelle());
+        comboBox3.addActionListener(_ -> filterTabelle());
 
         // ActionListener für den "Durchschnittspreis"-Button
-        durchschnittspreisAllerAutosButton.addActionListener(e -> berechneDurchschnittspreis());
+        durchschnittspreisAllerAutosButton.addActionListener(_ -> berechneDurchschnittspreis());
     }
 
     private void initObjekte() {
@@ -130,7 +130,7 @@ public class automanagementGUI extends JFrame {
         return matcher.matches();
     }
 
-    private void löschenAuto() {
+    private void loeschenAuto() {
         int selectedRow = table1.getSelectedRow();
         if (selectedRow >= 0) {
             // Auto aus der Liste und Tabelle entfernen
