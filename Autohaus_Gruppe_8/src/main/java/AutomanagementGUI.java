@@ -45,6 +45,7 @@ public class AutomanagementGUI extends JFrame {
                 }
             }
         };
+
         table1.setModel(tableModel);                                                                                    // Modell der Tabelle zuweisen
 
         // Sortierer für die Tabelle initialisieren
