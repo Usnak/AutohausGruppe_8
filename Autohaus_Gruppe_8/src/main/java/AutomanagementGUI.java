@@ -101,12 +101,12 @@ public class AutomanagementGUI extends JFrame {
 
             // Wenn nur Kilometerstand ungültig, zeige diese Fehlermeldung an
             if (!kmStandPruefung) {
-                JOptionPane.showMessageDialog(this, "Fehler: Der Kilometerstand muss eine gültige ganze Zahl sein!\nBeispiel: 30000");
+                JOptionPane.showMessageDialog(this, "Fehler: Der Kilometerstand muss eine positive ganze Zahl sein!\nBeispiel: 30000");
                 return;
             }
             // Wenn nur Preis ungültig, zeige diese Fehlermeldung an
             if (!preisPruefung) {
-                JOptionPane.showMessageDialog(this, "Fehler: Der Preis muss eine gültige Zahl mit höchstens zwei Dezimalstellen sein!\nBeispiel: 12000.50");
+                JOptionPane.showMessageDialog(this, "Fehler: Der Preis muss eine positive Zahl mit höchstens zwei Dezimalstellen sein!\nBeispiel: 12000.50");
                 return;
             }
 
@@ -233,8 +233,7 @@ public class AutomanagementGUI extends JFrame {
 
         // Autos aus dem AutoManager zur Tabelle hinzufügen und ggf. formatieren
         for (Auto auto : autoManager.getAutos()) {
-            String formatierterPreis = String.format("%.2f" + " EUR", auto.getPreis());                                 // Um den Preis mit 2 Nachkommastellen und Einheit in der Tabelle anzuzeigen -> umwandeln in formatierten String vor dem Hinzufügen (somit kann Durchschnittspreis immer noch berechnet werden)
-            tableModel.addRow(new Object[]{auto.getMarke(), auto.getKmstand(), auto.getAntriebsart(), formatierterPreis});
+            tableModel.addRow(new Object[]{auto.getMarke(), auto.getKmstand(), auto.getAntriebsart(), auto.getPreis()});
         }
     }
 
