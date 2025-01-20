@@ -49,7 +49,7 @@ public class AutomanagementGUI extends JFrame {
         };
 
         table1.setModel(tableModel);                                                                                    // Modell der Tabelle zuweisen
-        setCustomRenderers();                                                                                           // Custom Renderer setzen
+        EinheitenRenderer();                                                                                           // Renderer setzen Zeile 109
 
         // Sortierer für die Tabelle initialisieren
         sorter = new TableRowSorter<>(tableModel);
@@ -127,7 +127,7 @@ public class AutomanagementGUI extends JFrame {
 
             // Kilometerstand/Preis -Eingabe in entsprechende Datentypen umwandeln
             int kmStand = Integer.parseInt(kmStandText);
-            double preis = Double.parseDouble(preisText);                                                               //Preis muss als double in Liste gespeichert werden um später damit rechnen zu können. Wird jedoch dann vor dem Hinzufügen zur Tabelle in formatierten String umgewandelt: siehe Zeile 205
+            double preis = Double.parseDouble(preisText);                                                               //Preis muss als double in Liste gespeichert werden um später damit rechnen zu können.
 
             // Neues Auto-Objekt erstellen und speichern
             Auto neuesAuto = new Auto(marke, kmStand, antriebsart, preis);
@@ -145,13 +145,14 @@ public class AutomanagementGUI extends JFrame {
         }
     }
 
-    // Renderer für formatierung
-    private void setCustomRenderers() {
+
+
+    // Renderer für formatierung in der Tabelle
+    private void EinheitenRenderer() {
 
         table1.getColumnModel().getColumn(3).setCellRenderer(new DefaultTableCellRenderer() {
             @Override
             public void setValue(Object value) {
-                // Formatiere den Preis
                 if (value instanceof Double) {
                     setText(String.format("%.2f" + " EUR", value));                                                      // Formatiert den Wert als String mit 2 nachkommastellen und EUR-Einheit
                 } else {
@@ -170,6 +171,8 @@ public class AutomanagementGUI extends JFrame {
             }
         });
     }
+
+
 
     private boolean pruefePreis(String preis) {
         // Überprüfen ob Preis mit maximal 2 Dezimalstellen angegeben wurde

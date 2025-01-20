@@ -25,6 +25,8 @@ public class AutoManager {
     public List<Auto> getAutos() {
         return autos;                                                                                                   // Liste aller Autos zurückgeben
     }
+
+
     // hierfür Erstellung eines JUnit Test da KmFilter-Methode "private void" und somit kein Rückgabewert
     public double berechneDurchschnittspreis() {
         if (autos.isEmpty()) {
