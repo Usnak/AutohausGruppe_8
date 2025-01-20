@@ -45,7 +45,7 @@ public class AutomanagementGUI extends JFrame {
         // GUI-Fenster Layout
         setTitle("Automanagement");                                                                                     // Titel
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);                                                                 // Schließen beim Beenden
-        setSize(800, 500);                                                                                  // Fenstergröße
+        setSize(800, 550);                                                                                  // Fenstergröße
         setContentPane(Autos);                                                                                          // Hauptpanel
         setVisible(true);                                                                                               // Fenster sichtbar machen
         setLocationRelativeTo(null);                                                                                    // Fenster in die mitte des Bildschirms
@@ -100,12 +100,12 @@ public class AutomanagementGUI extends JFrame {
 
             // Wenn nur Kilometerstand ungültig, zeige diese Fehlermeldung an
             if (!kmStandPruefung) {
-                JOptionPane.showMessageDialog(this, "Fehler: Der Kilometerstand muss eine gültige ganze Zahl sein!");
+                JOptionPane.showMessageDialog(this, "Fehler: Der Kilometerstand muss eine gültige ganze Zahl sein!\nBeispiel: 30000");
                 return;
             }
             // Wenn nur Preis ungültig, zeige diese Fehlermeldung an
             if (!preisPruefung) {
-                JOptionPane.showMessageDialog(this, "Fehler: Der Preis muss eine gültige Zahl mit höchstens zwei Dezimalstellen sein!");
+                JOptionPane.showMessageDialog(this, "Fehler: Der Preis muss eine gültige Zahl mit höchstens zwei Dezimalstellen sein!\nBeispiel: 12000.50");
                 return;
             }
 
@@ -124,7 +124,7 @@ public class AutomanagementGUI extends JFrame {
             // Eingabefelder leeren
             textField1.setText("");
             textField2.setText("");
-        } catch (NumberFormatException ex) {
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Fehler: Kilometerstand und Preis müssen gültige Zahlen sein!");
         }
     }
@@ -199,11 +199,13 @@ public class AutomanagementGUI extends JFrame {
         // Tabelle leeren
         tableModel.setRowCount(0);
 
-        // Autos aus dem AutoManager zur Tabelle hinzufügen
+        // Autos aus dem AutoManager zur Tabelle hinzufügen und ggf. formatieren
         for (Auto auto : autoManager.getAutos()) {
-            tableModel.addRow(new Object[]{auto.getMarke(), auto.getKmstand(), auto.getAntriebsart(), auto.getPreis()});
+            String formatierterPreis = String.format("%.2f" + " EUR", auto.getPreis());                                 // Um den Preis mit 2 Nachkommastellen und Einheit in der Tabelle anzuzeigen -> umwandeln in formatierten String vor dem hinzufügen (somit kann Durchschnittspreis immer noch berechnet werden)
+            tableModel.addRow(new Object[]{auto.getMarke(), auto.getKmstand(), auto.getAntriebsart(), formatierterPreis});
         }
     }
+
     // Zusätzliche Methode zur Durchschnittspreis-Berechnung (hierfür Erstellung eines JUnit Test da KmFilter-Methode "private void" und somit kein Rückgabewert)
     public double berechneDurchschnittspreis() {
         List<Auto> autos = autoManager.getAutos();
@@ -212,16 +214,16 @@ public class AutomanagementGUI extends JFrame {
             JOptionPane.showMessageDialog(this, "Es gibt keine Autos, um den Durchschnittspreis zu berechnen!");
             return 0;
         }
-
+        // Preise summieren
         double summe = 0;
         for (Auto auto : autos) {
-            summe += auto.getPreis();                                                                                   // Preise summieren
+            summe += auto.getPreis();
         }
-
-        double durchschnittspreis = summe / autos.size();                                                               // Durchschnitt berechnen
+        // Durchschnitt berechnen
+        double durchschnittspreis = summe / autos.size();
         JOptionPane.showMessageDialog(this, "Der Durchschnittspreis aller Autos beträgt: " + String.format("%.2f", durchschnittspreis) + " EUR");
 
-        return durchschnittspreis;                                                                                      //Rückgabe Durchschnittspreis
+        return durchschnittspreis;
     }
 
     // Hauptprogramm starten
