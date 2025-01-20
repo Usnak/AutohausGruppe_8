@@ -2,6 +2,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -83,9 +84,9 @@ public class AutomanagementGUI extends JFrame {
     private void speichernAuto() {
         try {
             // Eingabewerte abrufen
-            String marke = comboBox1.getSelectedItem().toString();                                                      // Marke abrufen
+            String marke = Objects.requireNonNull(comboBox1.getSelectedItem()).toString();                                                      // Marke abrufen
             String kmStandText = textField1.getText();                                                                  // Kilometerstand abrufen
-            String antriebsart = comboBox2.getSelectedItem().toString();                                                // Antriebsart abrufen
+            String antriebsart = Objects.requireNonNull(comboBox2.getSelectedItem()).toString();                                                // Antriebsart abrufen
             String preisText = textField2.getText();                                                                    // Preis abrufen
 
             // Überprüfe, ob der Kilometerstand und der Preis gültig sind
@@ -157,7 +158,7 @@ public class AutomanagementGUI extends JFrame {
     // Filter Funktion in ComboBox3
     private void filterTabelle() {
         // Tabelle aktualisiren basierend auf Filteroption
-        String filterOption = comboBox3.getSelectedItem().toString();
+        String filterOption = Objects.requireNonNull(comboBox3.getSelectedItem()).toString();
         switch (filterOption) {
             case "Nicht Filtern":                                                                                       // Keine Filterung standardmäßig bzw. als Option 0 damit nicht direkt gefiltert wird
                 sorter.setRowFilter(null);
