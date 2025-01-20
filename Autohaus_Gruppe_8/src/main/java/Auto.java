@@ -1,6 +1,6 @@
 public class Auto {
 
-    // Attribute der Klasse Auto (durch "final" alle unveränderlich nach der Initialisierung)
+    // Attribute der Klasse Auto
     private final String marke;                                                                                         // Marke des Autos
     private final int kmstand;                                                                                          // Kilometerstand des Autos
     private final String antriebsart;                                                                                   // Antriebsart des Autos (z. B. Benzin, Diesel, Elektro)
@@ -34,11 +34,5 @@ public class Auto {
     // Getter Methode für Preis
     public double getPreis() {
         return preis;                                                                                                   // Rückgabe des Preises
-    }
-
-    // Überschreibt die toString-Methode um eine formatierte Zeichenkette für das Auto Objekt zurückzugeben
-    @Override
-    public String toString() {
-        return String.format("%s, %.0f km, %s, %.2f €)", marke, (double) kmstand, antriebsart, preis);                  // Formatierte Ausgabe: Marke, Kilometerstand km, Antriebsart, Preis €)
     }
 }
