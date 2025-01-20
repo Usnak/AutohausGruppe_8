@@ -33,6 +33,17 @@ public class AutomanagementGUI extends JFrame {
             public boolean isCellEditable(int row, int column) {
                 return false;                                                                                           // Alle Zellen sind nicht bearbeitbar
             }
+            @Override
+            public Class<?> getColumnClass(int columnIndex) {
+                switch (columnIndex) {
+                    case 1: // Kilometerstand
+                        return Integer.class;
+                    case 3: // Preis
+                        return Double.class;
+                    default:
+                        return String.class;
+                }
+            }
         };
         table1.setModel(tableModel);                                                                                    // Modell der Tabelle zuweisen
 
