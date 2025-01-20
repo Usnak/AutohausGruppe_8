@@ -32,10 +32,10 @@ public class AutomanagementGUI extends JFrame {
 
         tableModel = new DefaultTableModel(new String[]{"Marke", "Kilometerstand", "Antriebsart", "Preis"}, 0) {
 
-            public boolean isCellEditable(int row, int column) {
+/*            public boolean isCellEditable(int row, int column) {
                 return false;                                                                                           // Alle Zellen in der Tabelle sind nicht mehr bearbeitbar
             }
-
+*/
             public Class<?> getColumnClass(int columnIndex) {                                                           // Datentypen in der Tabelle für Kilometerstand und Preis wurden von TableRowSorter als Swing erkannt und somit falsch sortiert
                 switch (columnIndex) {
                     case 1: // Kilometerstand
@@ -229,6 +229,10 @@ public class AutomanagementGUI extends JFrame {
     }
 
     // Filter Funktion in ComboBox3
+    /*Quelle: https://www.youtube.com/watch?v=U5Sh0KDLXSc
+              https://www.youtube.com/watch?v=Gg2CZHF37sQ
+              https://www.youtube.com/watch?v=Tg62AxNRir4
+    */
     private void filterTabelle() {
         // Tabelle aktualisiren basierend auf Filteroption
         String filterOption = Objects.requireNonNull(comboBox3.getSelectedItem()).toString();
