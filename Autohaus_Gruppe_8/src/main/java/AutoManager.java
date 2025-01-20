@@ -2,23 +2,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AutoManager {
+    // Liste zur Speicherung von Auto Objekten
     private final List<Auto> autos;
 
     public AutoManager() {
-        autos = new ArrayList<>();
+        autos = new ArrayList<>();                                                                                      // Initialisierung der Liste mit einer ArrayList
     }
 
+    // Methode zum Hinzufügen von Autos zur Liste
     public void addAuto(Auto auto) {
-        autos.add(auto);
+        autos.add(auto);                                                                                                // Auto Objekt zur Liste hinzufügen
     }
 
+    // Methode zum Entfernen von Autos aus der Liste
     public void removeAuto(int index) {
-        if (index >= 0 && index < autos.size()) {
-            autos.remove(index);
+        if (index >= 0 && index < autos.size()) {                                                                       // Überprüfen ob Index gültig ist
+            autos.remove(index);                                                                                        // Auto an angegebener Position entfernen
         }
     }
 
+    // Methode zum Abrufen aller Autos
     public List<Auto> getAutos() {
-        return autos;
+        return autos;                                                                                                   // Liste aller Autos zurückgeben
     }
 }

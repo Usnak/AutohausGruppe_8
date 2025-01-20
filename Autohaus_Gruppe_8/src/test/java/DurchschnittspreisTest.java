@@ -1,17 +1,16 @@
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.util.List;
 
 
 public class DurchschnittspreisTest {
     private AutoManager autoManager;
-    private automanagementGUI gui;
+    private AutomanagementGUI gui;
 
     @BeforeEach
     void setUp() {
         autoManager = new AutoManager();
-        gui = new automanagementGUI();
+        gui = new AutomanagementGUI();
     }
 
 
