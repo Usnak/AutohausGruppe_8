@@ -229,10 +229,6 @@ public class AutomanagementGUI extends JFrame {
     }
 
     // Filter Funktion in ComboBox3
-    /*Quelle: https://www.youtube.com/watch?v=U5Sh0KDLXSc
-              https://www.youtube.com/watch?v=Gg2CZHF37sQ
-              https://www.youtube.com/watch?v=Tg62AxNRir4
-    */
     private void filterTabelle() {
         // Tabelle aktualisiren basierend auf Filteroption
         String filterOption = Objects.requireNonNull(comboBox3.getSelectedItem()).toString();
