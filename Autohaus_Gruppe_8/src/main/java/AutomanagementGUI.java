@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.table.DefaultTableCellRenderer;
 
 public class AutomanagementGUI extends JFrame {
     // GUI-Elemente Definition
@@ -18,6 +19,7 @@ public class AutomanagementGUI extends JFrame {
     private JButton deleteButton;                                                                                       // Button zum Löschen eines Autos
     private JComboBox<String> comboBox3;                                                                                // ComboBox für Filteroptionen
     private JButton durchschnittspreisAllerAutosButton;                                                                 // Button zur Durchschnittspreis-Berechnung
+
 
     // Klassenvariablen für Logik
     private final AutoManager autoManager;                                                                              // AutoManager
@@ -47,6 +49,7 @@ public class AutomanagementGUI extends JFrame {
         };
 
         table1.setModel(tableModel);                                                                                    // Modell der Tabelle zuweisen
+        setCustomRenderers();                                                                                           // Custom Renderer setzen
 
         // Sortierer für die Tabelle initialisieren
         sorter = new TableRowSorter<>(tableModel);
@@ -140,6 +143,16 @@ public class AutomanagementGUI extends JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Fehler: Kilometerstand und Preis müssen gültige Zahlen sein!");
         }
+    }
+
+    // Custom Renderer für linke Ausrichtung
+    private void setCustomRenderers() {
+        DefaultTableCellRenderer leftAlignRenderer = new DefaultTableCellRenderer();
+        leftAlignRenderer.setHorizontalAlignment(SwingConstants.LEFT); // Links ausrichten
+
+        // Anwenden auf die Spalten "Kilometerstand" und "Preis"
+        table1.getColumnModel().getColumn(1).setCellRenderer(leftAlignRenderer); // Spalte Kilometerstand
+        table1.getColumnModel().getColumn(3).setCellRenderer(leftAlignRenderer); // Spalte Preis
     }
 
     private boolean pruefePreis(String preis) {
