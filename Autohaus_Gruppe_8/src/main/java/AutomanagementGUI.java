@@ -33,10 +33,10 @@ public class AutomanagementGUI extends JFrame {
         tableModel = new DefaultTableModel(new String[]{"Marke", "Kilometerstand", "Antriebsart", "Preis"}, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false;                                                                                           // Alle Zellen sind nicht bearbeitbar
+                return false;                                                                                           // Alle Zellen in der Tabelle sind nicht mehr bearbeitbar
             }
             @Override
-            public Class<?> getColumnClass(int columnIndex) {                                                           //Datentypen in der Tabelle für Kilometerstand und Preis damit RowSorter richtig funktioniert
+            public Class<?> getColumnClass(int columnIndex) {                                                           // Datentypen in der Tabelle für Kilometerstand und Preis damit TableRowSorter richtig funktioniert
                 switch (columnIndex) {
                     case 1: // Kilometerstand
                         return Integer.class;
@@ -49,7 +49,7 @@ public class AutomanagementGUI extends JFrame {
         };
 
         table1.setModel(tableModel);                                                                                    // Modell der Tabelle zuweisen
-        EinheitenRenderer();                                                                                           // Renderer setzen Zeile 109
+        EinheitenRenderer();                                                                                            // Renderer setzen aus Zeile 150
 
         // Sortierer für die Tabelle initialisieren
         sorter = new TableRowSorter<>(tableModel);
@@ -179,7 +179,7 @@ public class AutomanagementGUI extends JFrame {
         Pattern patternPreis = Pattern.compile("^\\d+(\\.\\d{1,2})?$");
         Matcher matcherPreis = patternPreis.matcher(preis);
 
-        // Überprüfen ob positiv
+        // Überprüfen ob positiv mit try catch
         if (matcherPreis.matches()) {
             try {
                 double preisWert = Double.parseDouble(preis);
@@ -196,7 +196,7 @@ public class AutomanagementGUI extends JFrame {
         Pattern patternKmStand = Pattern.compile("^\\d+$");
         Matcher matcherKmStand = patternKmStand.matcher(kmStand);
 
-        // Überprüfen ob positiv
+        // Überprüfen ob positiv mit try catch
         if (matcherKmStand.matches()) {
             try {
                 int kmWert = Integer.parseInt(kmStand);
@@ -224,7 +224,7 @@ public class AutomanagementGUI extends JFrame {
         // Tabelle aktualisiren basierend auf Filteroption
         String filterOption = Objects.requireNonNull(comboBox3.getSelectedItem()).toString();
         switch (filterOption) {
-            case "Nicht Filtern":                                                                                       // Keine Filterung als Option 0 damit nicht direkt gefiltert wird
+            case "Nicht Filtern":                                                                                       // "Nicht Filtern" als Option 0 damit nicht direkt gefiltert wird
                 sorter.setRowFilter(null);
                 break;
             case "0-10.000":                                                                                            // Filteroption 1
@@ -260,7 +260,7 @@ public class AutomanagementGUI extends JFrame {
         }
     }
 
-    // Durchschnittspreis-Berechnung in die Klasse AutoManager verlagert für erleichterte Testung mit JUnit
+    // Durchschnittspreis-Berechnung in die Klasse AutoManager für erleichterte Testung mit JUnit
     private void berechneDurchschnittspreis() {
         // Aufruf der berechneten Methode aus AutoManager
         double durchschnittspreis = autoManager.berechneDurchschnittspreis();
@@ -275,7 +275,7 @@ public class AutomanagementGUI extends JFrame {
         // Tabelle leeren
         tableModel.setRowCount(0);
 
-        // Autos aus dem AutoManager zur Tabelle hinzufügen und ggf. formatieren
+        // Autos aus dem AutoManager zur Tabelle hinzufügen
         for (Auto auto : autoManager.getAutos()) {
             tableModel.addRow(new Object[]{auto.getMarke(), auto.getKmstand(), auto.getAntriebsart(), auto.getPreis()});
         }
