@@ -27,7 +27,7 @@ public class AutomanagementGUI extends JFrame {
         // Initialisierung des AutoManagers
         autoManager = new AutoManager();
 
-        tableModel = new DefaultTableModel(new String[]{"Marke", "Kilometerstand", "Antriebsart", "Preis"}, 0); // Tabellendatenmodell erstellen
+        tableModel = new DefaultTableModel(new String[]{"Marke", "Kilometerstand", "Antriebsart", "Preis"}, 0); // Tabellenlayout erstellen
         table1.setModel(tableModel);                                                                                     // Modell der Tabelle zuweisen
 
         // Sortierer für die Tabelle initialisieren

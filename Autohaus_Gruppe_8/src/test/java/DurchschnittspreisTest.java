@@ -13,7 +13,6 @@ public class DurchschnittspreisTest {
         gui = new AutomanagementGUI();
     }
 
-
     @Test
     void testBerechneDurchschnittspreis() {
         // Beispiel-Daten hinzufügen
