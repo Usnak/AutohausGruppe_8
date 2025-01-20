@@ -110,9 +110,9 @@ public class AutomanagementGUI extends JFrame {
                 return;
             }
 
-            // Kilometerstand und Preis in entsprechende Datentypen umwandeln
+            // Kilometerstand/Preis -Eingabe in entsprechende Datentypen umwandeln
             int kmStand = Integer.parseInt(kmStandText);
-            double preis = Double.parseDouble(preisText);
+            double preis = Double.parseDouble(preisText);                                                               //Preis muss als double in Liste gespeichert werden um später damit rechnen zu können. Wird jedoch dann vor dem Hinzufügen zur Tabelle in formatierten String umgewandelt: siehe Zeile 205
 
             // Neues Auto-Objekt erstellen und speichern
             Auto neuesAuto = new Auto(marke, kmStand, antriebsart, preis);
