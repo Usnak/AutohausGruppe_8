@@ -145,14 +145,30 @@ public class AutomanagementGUI extends JFrame {
         }
     }
 
-    // Custom Renderer für linke Ausrichtung
+    // Renderer für formatierung
     private void setCustomRenderers() {
-        DefaultTableCellRenderer leftAlignRenderer = new DefaultTableCellRenderer();
-        leftAlignRenderer.setHorizontalAlignment(SwingConstants.LEFT); // Links ausrichten
 
-        // Anwenden auf die Spalten "Kilometerstand" und "Preis"
-        table1.getColumnModel().getColumn(1).setCellRenderer(leftAlignRenderer); // Spalte Kilometerstand
-        table1.getColumnModel().getColumn(3).setCellRenderer(leftAlignRenderer); // Spalte Preis
+        table1.getColumnModel().getColumn(3).setCellRenderer(new DefaultTableCellRenderer() {
+            @Override
+            public void setValue(Object value) {
+                // Formatiere den Preis
+                if (value instanceof Double) {
+                    setText(String.format("%.2f" + " EUR", value));                                                      // Formatiert den Wert als String mit 2 nachkommastellen und EUR-Einheit
+                } else {
+                    setText(value == null ? "" : value.toString());
+                }
+            }
+        });
+        table1.getColumnModel().getColumn(1).setCellRenderer(new DefaultTableCellRenderer() {
+            @Override
+            public void setValue(Object value) {
+                if (value instanceof Integer) {
+                    setText(value + " km");                                                                             // Formatiert den Wert mit km-Einheit
+                } else {
+                    setText(value == null ? "" : value.toString());
+                }
+            }
+        });
     }
 
     private boolean pruefePreis(String preis) {
