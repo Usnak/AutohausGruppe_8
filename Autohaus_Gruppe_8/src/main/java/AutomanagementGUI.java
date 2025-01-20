@@ -32,14 +32,13 @@ public class AutomanagementGUI extends JFrame {
             }
 */
             public Class<?> getColumnClass(int columnIndex) {                                                           // Datentypen in der Tabelle für Kilometerstand und Preis wurden von TableRowSorter als Swing erkannt und somit falsch sortiert
-                switch (columnIndex) {
-                    case 1: // Kilometerstand
-                        return Integer.class;
-                    case 3: // Preis
-                        return Double.class;
-                    default:
-                        return String.class;
-                }
+                return switch (columnIndex) {
+                    case 1 -> // Kilometerstand
+                            Integer.class;
+                    case 3 -> // Preis
+                            Double.class;
+                    default -> String.class;
+                };
             }
         };
 
@@ -170,22 +169,19 @@ public class AutomanagementGUI extends JFrame {
         });
     }
 
-    //Regex Versuch Pattern Matcher
-    /* Quellen: https://www.youtube.com/watch?v=KoXIZSNlRNM
-            https://www.youtube.com/watch?v=Mfgkcw_jbUM
-            https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html
+    /* Quellen:
     */
     private boolean pruefePreis(String preis) {
         try {
-            // Versuche den Preis als double zu parsen
+            // Preis als double parsen
             double preisWert = Double.parseDouble(preis);
 
-            // Überprüfen, ob der Preis positiv ist und maximal 2 Dezimalstellen hat
+            // Überprüfen ob Preis positiv
             if (preisWert > 0) {
-                // Prüfe, ob der Preis maximal 2 Dezimalstellen hat
-                double decimalPart = preisWert - Math.floor(preisWert);
-                int decimalPlaces = String.valueOf(decimalPart).length() - 2;
-                return decimalPlaces <= 2;
+                // Prüfen ob der Preis maximal 2 Dezimalstellen hat
+                double dezimalStelle = preisWert - Math.floor(preisWert);
+                int dezimalStellen = String.valueOf(dezimalStelle).length() - 2;
+                return dezimalStellen <= 2;
             }
         } catch (NumberFormatException e) {
             // Wenn der Preis keine gültige Zahl ist
@@ -197,10 +193,10 @@ public class AutomanagementGUI extends JFrame {
 
     private boolean pruefeKmStand(String kmStand) {
         try {
-            // Versuche den Kilometerstand als Integer zu parsen
+            // Kilometerstand als Integer parsen
             int kmWert = Integer.parseInt(kmStand);
 
-            // Überprüfen, ob der Kilometerstand positiv ist
+            // Überprüfen ob Kilometerstand positiv
             return kmWert > 0;
         } catch (NumberFormatException e) {
             // Wenn der Kilometerstand keine gültige Zahl ist
