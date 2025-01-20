@@ -24,17 +24,19 @@ public class AutomanagementGUI extends JFrame {
     private final DefaultTableModel tableModel;                                                                         // Datenmodell für die Tabelle
     private final TableRowSorter<DefaultTableModel> sorter;                                                             // Sortiere für die Tabelle
 
+    //Quelle: https://docs.oracle.com/javase/8/docs/api/javax/swing/table/DefaultTableModel.html
+    //Quelle: https://www.jetbrains.com/help/idea/design-gui-using-swing.html#adjust_design
     public AutomanagementGUI() {
-        // Initialisierung des AutoManagers
-        autoManager = new AutoManager();
-                                                                                                                        //Quelle: https://www.jetbrains.com/help/idea/design-gui-using-swing.html#adjust_design
+
+        autoManager = new AutoManager();                                                                                // Initialisierung des AutoManagers
+
         tableModel = new DefaultTableModel(new String[]{"Marke", "Kilometerstand", "Antriebsart", "Preis"}, 0) {
 
             public boolean isCellEditable(int row, int column) {
                 return false;                                                                                           // Alle Zellen in der Tabelle sind nicht mehr bearbeitbar
             }
-            //Quelle: https://docs.oracle.com/javase/8/docs/api/javax/swing/table/DefaultTableModel.html
-            public Class<?> getColumnClass(int columnIndex) {                                                           // Datentypen in der Tabelle für Kilometerstand und Preis damit TableRowSorter richtig funktioniert
+
+            public Class<?> getColumnClass(int columnIndex) {                                                           // Datentypen in der Tabelle für Kilometerstand und Preis wurden von TableRowSorter als Swing erkannt und somit falsch sortiert
                 switch (columnIndex) {
                     case 1: // Kilometerstand
                         return Integer.class;
