@@ -156,7 +156,6 @@ public class AutomanagementGUI extends JFrame {
     private void EinheitenRenderer() {
 
         table1.getColumnModel().getColumn(3).setCellRenderer(new DefaultTableCellRenderer() {
-            @Override
             public void setValue(Object value) {
                 if (value instanceof Double) {
                     setText(String.format("%.2f" + " EUR", value));                                                      // Formatiert den Wert als String mit 2 nachkommastellen und EUR-Einheit
@@ -166,7 +165,6 @@ public class AutomanagementGUI extends JFrame {
             }
         });
         table1.getColumnModel().getColumn(1).setCellRenderer(new DefaultTableCellRenderer() {
-            @Override
             public void setValue(Object value) {
                 if (value instanceof Integer) {
                     setText(value + " km");                                                                             // Formatiert den Wert mit km-Einheit
