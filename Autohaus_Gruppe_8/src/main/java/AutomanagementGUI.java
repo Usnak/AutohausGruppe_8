@@ -84,9 +84,9 @@ public class AutomanagementGUI extends JFrame {
     private void speichernAuto() {
         try {
             // Eingabewerte abrufen
-            String marke = Objects.requireNonNull(comboBox1.getSelectedItem()).toString();                                                      // Marke abrufen
+            String marke = Objects.requireNonNull(comboBox1.getSelectedItem()).toString();                              // Marke abrufen
             String kmStandText = textField1.getText();                                                                  // Kilometerstand abrufen
-            String antriebsart = Objects.requireNonNull(comboBox2.getSelectedItem()).toString();                                                // Antriebsart abrufen
+            String antriebsart = Objects.requireNonNull(comboBox2.getSelectedItem()).toString();                        // Antriebsart abrufen
             String preisText = textField2.getText();                                                                    // Preis abrufen
 
             // Überprüfe, ob der Kilometerstand und der Preis gültig sind
@@ -131,14 +131,14 @@ public class AutomanagementGUI extends JFrame {
     }
 
     private boolean pruefePreis(String preis) {
-        // Überprüfen ob Preis mit maximal 2 Dezimalstellen angegeben ist
+        // Überprüfen ob Preis mit maximal 2 Dezimalstellen angegeben wurde
         Pattern patternPreis = Pattern.compile("^\\d+(\\.\\d{1,2})?$");
         Matcher matcherPreis = patternPreis.matcher(preis);
         return matcherPreis.matches();
     }
 
     private boolean pruefeKmStand(String kmStand) {
-        // Überprüfen ob Kilometerstand nur ganze Zahlen enthält
+        // Überprüfen ob Kilometerstand-Eingabe nur ganze Zahlen enthält
         Pattern patternKmStand = Pattern.compile("^\\d+$");
         Matcher matcherKmStand = patternKmStand.matcher(kmStand);
         return matcherKmStand.matches();
@@ -160,7 +160,7 @@ public class AutomanagementGUI extends JFrame {
         // Tabelle aktualisiren basierend auf Filteroption
         String filterOption = Objects.requireNonNull(comboBox3.getSelectedItem()).toString();
         switch (filterOption) {
-            case "Nicht Filtern":                                                                                       // Keine Filterung standardmäßig bzw. als Option 0 damit nicht direkt gefiltert wird
+            case "Nicht Filtern":                                                                                       // Keine Filterung als Option 0 damit nicht direkt gefiltert wird
                 sorter.setRowFilter(null);
                 break;
             case "0-10.000":                                                                                            // Filteroption 1
@@ -202,7 +202,7 @@ public class AutomanagementGUI extends JFrame {
 
         // Autos aus dem AutoManager zur Tabelle hinzufügen und ggf. formatieren
         for (Auto auto : autoManager.getAutos()) {
-            String formatierterPreis = String.format("%.2f" + " EUR", auto.getPreis());                                 // Um den Preis mit 2 Nachkommastellen und Einheit in der Tabelle anzuzeigen -> umwandeln in formatierten String vor dem hinzufügen (somit kann Durchschnittspreis immer noch berechnet werden)
+            String formatierterPreis = String.format("%.2f" + " EUR", auto.getPreis());                                 // Um den Preis mit 2 Nachkommastellen und Einheit in der Tabelle anzuzeigen -> umwandeln in formatierten String vor dem Hinzufügen (somit kann Durchschnittspreis immer noch berechnet werden)
             tableModel.addRow(new Object[]{auto.getMarke(), auto.getKmstand(), auto.getAntriebsart(), formatierterPreis});
         }
     }
