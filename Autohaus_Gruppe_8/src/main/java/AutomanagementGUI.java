@@ -8,15 +8,10 @@ import javax.swing.table.DefaultTableCellRenderer;
 public class AutomanagementGUI extends JFrame {
     // GUI-Elemente Definition
     private JPanel Autos;                                                                                               // Hauptpanel der GUI
-    private JTextField textField1;                                                                                      // Eingabefeld für Kilometerstand
-    private JTextField textField2;                                                                                      // Eingabefeld für Preis
     private JTable table1;                                                                                              // Tabelle zur Anzeige der Autos
-    private JComboBox<String> comboBox1;                                                                                // ComboBox für Marke
-    private JComboBox<String> comboBox2;                                                                                // ComboBox für Antriebsart
-    private JButton speichernButton;                                                                                    // Button zum Speichern eines neuen Autos
-    private JButton deleteButton;                                                                                       // Button zum Löschen eines Autos
-    private JComboBox<String> comboBox3;                                                                                // ComboBox für Filteroptionen
-    private JButton durchschnittspreisAllerAutosButton;                                                                 // Button zur Durchschnittspreis-Berechnung
+    private JTextField textField1,textField2;                                                                           // Eingabefeld
+    private JComboBox<String> comboBox1,comboBox2,comboBox3;                                                            // ComboBox
+    private JButton speichernButton,durchschnittspreisAllerAutosButton,deleteButton;                                    // Buttons
 
 
     // Klassenvariablen für Logik
