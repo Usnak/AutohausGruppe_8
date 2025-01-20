@@ -22,7 +22,7 @@ public class AutomanagementGUI extends JFrame {
     // Klassenvariablen für Logik
     private final AutoManager autoManager;                                                                              // AutoManager
     private final DefaultTableModel tableModel;                                                                         // Datenmodell für die Tabelle
-    private final TableRowSorter<DefaultTableModel> sorter;                                                             // Sortierer für die Tabelle
+    private final TableRowSorter<DefaultTableModel> sorter;                                                             // Sortiere für die Tabelle
 
     public AutomanagementGUI() {
         // Initialisierung des AutoManagers
@@ -134,14 +134,34 @@ public class AutomanagementGUI extends JFrame {
         // Überprüfen ob Preis mit maximal 2 Dezimalstellen angegeben wurde
         Pattern patternPreis = Pattern.compile("^\\d+(\\.\\d{1,2})?$");
         Matcher matcherPreis = patternPreis.matcher(preis);
-        return matcherPreis.matches();
+
+        // Überprüfen ob positiv
+        if (matcherPreis.matches()) {
+            try {
+                double preisWert = Double.parseDouble(preis);
+                return preisWert > 0;
+            } catch (NumberFormatException e) {
+                return false;
+            }
+        }
+        return false;
     }
 
     private boolean pruefeKmStand(String kmStand) {
-        // Überprüfen ob Kilometerstand-Eingabe nur ganze Zahlen enthält
+        // Überprüfen ob Kilometerstand-Eingabe nur ganze Zahlen
         Pattern patternKmStand = Pattern.compile("^\\d+$");
         Matcher matcherKmStand = patternKmStand.matcher(kmStand);
-        return matcherKmStand.matches();
+
+        // Überprüfen ob positiv
+        if (matcherKmStand.matches()) {
+            try {
+                int kmWert = Integer.parseInt(kmStand);
+                return kmWert > 0;
+            } catch (NumberFormatException e) {
+                return false;
+            }
+        }
+        return false;
     }
 
     private void loeschenAuto() {
