@@ -25,4 +25,19 @@ public class AutoManager {
     public List<Auto> getAutos() {
         return autos;                                                                                                   // Liste aller Autos zurückgeben
     }
+    // hierfür Erstellung eines JUnit Test da KmFilter-Methode "private void" und somit kein Rückgabewert
+    public double berechneDurchschnittspreis() {
+        if (autos.isEmpty()) {
+            return 0;  // Falls keine Autos vorhanden sind, wird 0 zurückgegeben
+        }
+
+        // Preise summieren
+        double summe = 0;
+        for (Auto auto : autos) {
+            summe += auto.getPreis();
+        }
+
+        // Durchschnitt berechnen
+        return summe / autos.size();
+    }
 }

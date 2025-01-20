@@ -196,6 +196,17 @@ public class AutomanagementGUI extends JFrame {
         }
     }
 
+    // Durchschnittspreis-Berechnung in die Klasse AutoManager verlagert für erleichterte Testung mit JUnit
+    private void berechneDurchschnittspreis() {
+        // Aufruf der berechneten Methode aus AutoManager
+        double durchschnittspreis = autoManager.berechneDurchschnittspreis();
+        if (durchschnittspreis == 0) {
+            JOptionPane.showMessageDialog(this, "Es gibt keine Autos, um den Durchschnittspreis zu berechnen!");
+        } else {
+            JOptionPane.showMessageDialog(this, "Der Durchschnittspreis aller Autos beträgt: " + String.format("%.2f", durchschnittspreis) + " EUR");
+        }
+    }
+
     private void updateTable() {
         // Tabelle leeren
         tableModel.setRowCount(0);
@@ -205,26 +216,6 @@ public class AutomanagementGUI extends JFrame {
             String formatierterPreis = String.format("%.2f" + " EUR", auto.getPreis());                                 // Um den Preis mit 2 Nachkommastellen und Einheit in der Tabelle anzuzeigen -> umwandeln in formatierten String vor dem Hinzufügen (somit kann Durchschnittspreis immer noch berechnet werden)
             tableModel.addRow(new Object[]{auto.getMarke(), auto.getKmstand(), auto.getAntriebsart(), formatierterPreis});
         }
-    }
-
-    // Zusätzliche Methode zur Durchschnittspreis-Berechnung (hierfür Erstellung eines JUnit Test da KmFilter-Methode "private void" und somit kein Rückgabewert)
-    public double berechneDurchschnittspreis() {
-        List<Auto> autos = autoManager.getAutos();
-
-        if (autos.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Es gibt keine Autos, um den Durchschnittspreis zu berechnen!");
-            return 0;
-        }
-        // Preise summieren
-        double summe = 0;
-        for (Auto auto : autos) {
-            summe += auto.getPreis();
-        }
-        // Durchschnitt berechnen
-        double durchschnittspreis = summe / autos.size();
-        JOptionPane.showMessageDialog(this, "Der Durchschnittspreis aller Autos beträgt: " + String.format("%.2f", durchschnittspreis) + " EUR");
-
-        return durchschnittspreis;
     }
 
     // Hauptprogramm starten

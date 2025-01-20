@@ -2,15 +2,12 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
 public class DurchschnittspreisTest {
     private AutoManager autoManager;
-    private AutomanagementGUI gui;
 
     @BeforeEach
     void setUp() {
         autoManager = new AutoManager();
-        gui = new AutomanagementGUI();
     }
 
     @Test
@@ -33,16 +30,13 @@ public class DurchschnittspreisTest {
         // Erwartete Durchschnittswerte
         double expectedDurchschnittspreis =
                 (135030.50 + 26100.30 + 100879.45 + 12560.30 + 30400.20 + 67700.20 + 8007.55 + 9700.50 + 21034.60 + 45098.60 + 569.54
-                + 45569.50 + 100569.40) / 13;
+                        + 45569.50 + 100569.40) / 13;
 
-        // Tatsächlicher Wert berechnet durch die Methode (muss leicht angepasst werden)
-        double actualDurchschnittspreis = gui.berechneDurchschnittspreis();
+        // Tatsächlicher Wert berechnet durch den AutoManager
+        double actualDurchschnittspreis = autoManager.berechneDurchschnittspreis();
 
         // Überprüfung des erwarteten Ergebnisses
         assertEquals(expectedDurchschnittspreis, actualDurchschnittspreis, 0.01,
                 "Der Durchschnittspreis wurde nicht korrekt berechnet.");
-    }
-    @org.junit.jupiter.api.Test
-    void frameInit() {
     }
 }
