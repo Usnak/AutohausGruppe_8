@@ -34,7 +34,7 @@ public class AutomanagementGUI extends JFrame {
                 return false;                                                                                           // Alle Zellen sind nicht bearbeitbar
             }
             @Override
-            public Class<?> getColumnClass(int columnIndex) {
+            public Class<?> getColumnClass(int columnIndex) {                                                           //Datentypen in der Tabelle für Kilometerstand und Preis damit RowSorter richtig funktioniert
                 switch (columnIndex) {
                     case 1: // Kilometerstand
                         return Integer.class;
