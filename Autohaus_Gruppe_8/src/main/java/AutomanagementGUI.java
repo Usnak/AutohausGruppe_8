@@ -179,6 +179,7 @@ public class AutomanagementGUI extends JFrame {
 
 /* Quellen: https://www.youtube.com/watch?v=KoXIZSNlRNM
             https://www.youtube.com/watch?v=Mfgkcw_jbUM
+            https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html
 */
     private boolean pruefePreis(String preis) {
         // Überprüfen ob Preis mit maximal 2 Dezimalstellen angegeben wurde
@@ -308,4 +309,3 @@ https://www.youtube.com/watch?v=xXDDVSjogs0
 https://www.youtube.com/@mrcresseysclassvideos8183
 https://www.youtube.com/@KnowledgetoShare
  */
-
