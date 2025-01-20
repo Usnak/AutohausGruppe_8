@@ -177,8 +177,9 @@ public class AutomanagementGUI extends JFrame {
         });
     }
 
-
-
+/* Quellen: https://www.youtube.com/watch?v=KoXIZSNlRNM
+            https://www.youtube.com/watch?v=Mfgkcw_jbUM
+*/
     private boolean pruefePreis(String preis) {
         // Überprüfen ob Preis mit maximal 2 Dezimalstellen angegeben wurde
         Pattern patternPreis = Pattern.compile("^\\d+(\\.\\d{1,2})?$");
@@ -224,7 +225,12 @@ public class AutomanagementGUI extends JFrame {
             JOptionPane.showMessageDialog(this, "Bitte wählen Sie ein Auto in der Tabelle aus, das gelöscht werden soll."); // Ausgabe von Misserfolg im dialogfenster da (selectedRow >= 0) = false
         }
     }
+
     // Filter Funktion in ComboBox3
+    /*Quelle: https://www.youtube.com/watch?v=U5Sh0KDLXSc
+              https://www.youtube.com/watch?v=Gg2CZHF37sQ
+              https://www.youtube.com/watch?v=Tg62AxNRir4
+    */
     private void filterTabelle() {
         // Tabelle aktualisiren basierend auf Filteroption
         String filterOption = Objects.requireNonNull(comboBox3.getSelectedItem()).toString();
@@ -291,3 +297,15 @@ public class AutomanagementGUI extends JFrame {
         new AutomanagementGUI();
     }
 }
+
+/*Weiter Quellen
+https://www.youtube.com/watch?v=P-D5tDNZdnY
+https://openbook.rheinwerk-verlag.de/javainsel
+https://openbook.rheinwerk-verlag.de/java8
+https://www.youtube.com/watch?v=crm0yaneCb0
+https://www.youtube.com/watch?v=O1yJ9wvlviA
+https://www.youtube.com/watch?v=xXDDVSjogs0
+https://www.youtube.com/@mrcresseysclassvideos8183
+https://www.youtube.com/@KnowledgetoShare
+ */
+
