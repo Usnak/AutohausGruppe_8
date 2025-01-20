@@ -177,10 +177,11 @@ public class AutomanagementGUI extends JFrame {
         });
     }
 
-/* Quellen: https://www.youtube.com/watch?v=KoXIZSNlRNM
+    //Regex Versuch Pattern Matcher
+    /* Quellen: https://www.youtube.com/watch?v=KoXIZSNlRNM
             https://www.youtube.com/watch?v=Mfgkcw_jbUM
             https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html
-*/
+    */
     private boolean pruefePreis(String preis) {
         // Überprüfen ob Preis mit maximal 2 Dezimalstellen angegeben wurde
         Pattern patternPreis = Pattern.compile("^\\d+(\\.\\d{1,2})?$");
