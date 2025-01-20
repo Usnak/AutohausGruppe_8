@@ -29,7 +29,7 @@ public class AutomanagementGUI extends JFrame {
     public AutomanagementGUI() {
         // Initialisierung des AutoManagers
         autoManager = new AutoManager();
-
+                                                                                                                        //Quelle: https://www.jetbrains.com/help/idea/design-gui-using-swing.html#adjust_design
         tableModel = new DefaultTableModel(new String[]{"Marke", "Kilometerstand", "Antriebsart", "Preis"}, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -49,7 +49,8 @@ public class AutomanagementGUI extends JFrame {
         };
 
         table1.setModel(tableModel);                                                                                    // Modell der Tabelle zuweisen
-        EinheitenRenderer();                                                                                            // Renderer setzen aus Zeile 150
+
+        EinheitenRenderer();                                                                                            // Renderer setzen aus Zeile 154
 
         // Sortierer für die Tabelle initialisieren
         sorter = new TableRowSorter<>(tableModel);
@@ -146,8 +147,12 @@ public class AutomanagementGUI extends JFrame {
     }
 
 
-
     // Renderer für formatierung in der Tabelle
+    // Quelle: https://openbook.rheinwerk-verlag.de/java8/10_019.html#u10.19.4
+    // Quelle: https://www.youtube.com/watch?v=yf0U3c2Oxy8
+    // Quelle: https://www.codejava.net/java-se/swing/jtable-simple-renderer-example
+    // Quelle: https://docs.oracle.com/javase/8/docs/api/javax/swing/table/DefaultTableCellRenderer.html
+
     private void EinheitenRenderer() {
 
         table1.getColumnModel().getColumn(3).setCellRenderer(new DefaultTableCellRenderer() {
