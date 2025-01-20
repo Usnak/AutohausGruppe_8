@@ -3,8 +3,6 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import java.util.List;
 import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javax.swing.table.DefaultTableCellRenderer;
 
 public class AutomanagementGUI extends JFrame {
@@ -31,11 +29,11 @@ public class AutomanagementGUI extends JFrame {
         autoManager = new AutoManager();
                                                                                                                         //Quelle: https://www.jetbrains.com/help/idea/design-gui-using-swing.html#adjust_design
         tableModel = new DefaultTableModel(new String[]{"Marke", "Kilometerstand", "Antriebsart", "Preis"}, 0) {
-            @Override
+
             public boolean isCellEditable(int row, int column) {
                 return false;                                                                                           // Alle Zellen in der Tabelle sind nicht mehr bearbeitbar
             }
-            @Override
+            //Quelle: https://docs.oracle.com/javase/8/docs/api/javax/swing/table/DefaultTableModel.html
             public Class<?> getColumnClass(int columnIndex) {                                                           // Datentypen in der Tabelle für Kilometerstand und Preis damit TableRowSorter richtig funktioniert
                 switch (columnIndex) {
                     case 1: // Kilometerstand
@@ -183,38 +181,38 @@ public class AutomanagementGUI extends JFrame {
             https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html
     */
     private boolean pruefePreis(String preis) {
-        // Überprüfen ob Preis mit maximal 2 Dezimalstellen angegeben wurde
-        Pattern patternPreis = Pattern.compile("^\\d+(\\.\\d{1,2})?$");
-        Matcher matcherPreis = patternPreis.matcher(preis);
+        try {
+            // Versuche den Preis als double zu parsen
+            double preisWert = Double.parseDouble(preis);
 
-        // Überprüfen ob positiv mit try catch
-        if (matcherPreis.matches()) {
-            try {
-                double preisWert = Double.parseDouble(preis);
-                return preisWert > 0;
-            } catch (NumberFormatException e) {
-                return false;
+            // Überprüfen, ob der Preis positiv ist und maximal 2 Dezimalstellen hat
+            if (preisWert > 0) {
+                // Prüfe, ob der Preis maximal 2 Dezimalstellen hat
+                double decimalPart = preisWert - Math.floor(preisWert);
+                int decimalPlaces = String.valueOf(decimalPart).length() - 2;
+                return decimalPlaces <= 2;
             }
+        } catch (NumberFormatException e) {
+            // Wenn der Preis keine gültige Zahl ist
+            return false;
         }
         return false;
     }
+
 
     private boolean pruefeKmStand(String kmStand) {
-        // Überprüfen ob Kilometerstand-Eingabe nur ganze Zahlen
-        Pattern patternKmStand = Pattern.compile("^\\d+$");
-        Matcher matcherKmStand = patternKmStand.matcher(kmStand);
+        try {
+            // Versuche den Kilometerstand als Integer zu parsen
+            int kmWert = Integer.parseInt(kmStand);
 
-        // Überprüfen ob positiv mit try catch
-        if (matcherKmStand.matches()) {
-            try {
-                int kmWert = Integer.parseInt(kmStand);
-                return kmWert > 0;
-            } catch (NumberFormatException e) {
-                return false;
-            }
+            // Überprüfen, ob der Kilometerstand positiv ist
+            return kmWert > 0;
+        } catch (NumberFormatException e) {
+            // Wenn der Kilometerstand keine gültige Zahl ist
+            return false;
         }
-        return false;
     }
+
 
     private void loeschenAuto() {
         // Auto auswählen und löschen
@@ -309,4 +307,6 @@ https://www.youtube.com/watch?v=O1yJ9wvlviA
 https://www.youtube.com/watch?v=xXDDVSjogs0
 https://www.youtube.com/@mrcresseysclassvideos8183
 https://www.youtube.com/@KnowledgetoShare
+https://docs.oracle.com/javase/8/docs/api/javax/swing/table/DefaultTableModel.html
+
  */
