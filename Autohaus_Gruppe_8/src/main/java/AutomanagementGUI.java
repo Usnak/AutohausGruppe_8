@@ -293,7 +293,7 @@ public class AutomanagementGUI extends JFrame {
     }
 }
 
-/*Weiter Quellen
+/*Weitere Quellen
 https://www.youtube.com/watch?v=P-D5tDNZdnY
 https://openbook.rheinwerk-verlag.de/javainsel
 https://openbook.rheinwerk-verlag.de/java8

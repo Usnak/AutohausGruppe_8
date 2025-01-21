@@ -2,6 +2,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+// Quelle: https://www.jetbrains.com/help/idea/junit.html
 public class DurchschnittspreisTest {
     private AutoManager autoManager;
 
