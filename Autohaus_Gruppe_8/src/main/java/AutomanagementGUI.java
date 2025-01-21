@@ -26,20 +26,24 @@ public class AutomanagementGUI extends JFrame {
         autoManager = new AutoManager();                                                                                // Initialisierung des AutoManagers
 
         tableModel = new DefaultTableModel(new String[]{"Marke", "Kilometerstand", "Antriebsart", "Preis"}, 0) {
-
-/*            public boolean isCellEditable(int row, int column) {
+            //Quelle: https://docs.oracle.com/javase/tutorial/uiswing/components/table.html#data
+            public boolean isCellEditable(int row, int column) {
                 return false;                                                                                           // Alle Zellen in der Tabelle sind nicht mehr bearbeitbar
             }
-*/
-            public Class<?> getColumnClass(int columnIndex) {                                                           // Datentypen in der Tabelle für Kilometerstand und Preis wurden von TableRowSorter als Swing erkannt und somit falsch sortiert
-                return switch (columnIndex) {
-                    case 1 -> // Kilometerstand
-                            Integer.class;
-                    case 3 -> // Preis
-                            Double.class;
-                    default -> String.class;
-                };
+            // Datentypen in der Tabelle für Kilometerstand und Preis wurden von TableRowSorter als Swing erkannt und dementsprechend nicht nach der numerischen größe sortiert
+            // getColumnClass gibt Class-Objekt zurück, das den Datentyp der jeweiligen Spalte angibt (z.B. Case 1, also der kmStand, gibt Integer.class zurück somit kann der TableRowSorter wieder richtig sortieren)
+            // Quelle: https://stackoverflow.com/questions/12405605/using-custom-tablemodel-make-iscelleditable-true-for-a-particular-row-on-button
+            public Class getColumnClass(int columnIndex) {
+                switch (columnIndex) {                                                                                  // ab Java 12 könnte man hier einen return switch machen was schöner wäre jedoch nicht mit früheren Versionen kompatibel ist
+                    case 1: // Kilometerstand
+                        return Integer.class;
+                    case 3: // Preis
+                        return Double.class;
+                    default: // Standard für andere Spalten
+                        return String.class;
+                }
             }
+
         };
 
         table1.setModel(tableModel);                                                                                    // Modell der Tabelle zuweisen
