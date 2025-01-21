@@ -11,7 +11,7 @@ Projekt starten
    - Stellen Sie sicher, dass alle .java-Dateien im gleichen Verzeichnis liegen.
    - Kompilieren Sie die Dateien:
      
-     javac Auto.java AutoManager.java AutomanagementGUI.java
+     javac Auto.java / AutoManager.java / AutomanagementGUI.java
      
    - Führen Sie das Programm aus:
      
